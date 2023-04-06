@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.ERROR)
 
 CHANNELS = [int(CHANNEL) for CHANNEL in environ.get("CHANNELS", None).split()]       
 AuthChat = filters.chat(CHANNELS) if CHANNELS else (filters.group | filters.channel)         
-User     = Client(name = "AcceptUser", session_string = environ.get("SESSION"))
+User     = Client(name = "AcceptUser", api_id=environ.get("API_ID"), api_hash=environ.get("API_HASH"), session_string = environ.get("SESSION"))
 
 
 @User.on_message(filters.command(["run", "approve", "start"], [".", "/"]) & AuthChat)                     
